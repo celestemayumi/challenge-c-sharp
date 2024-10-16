@@ -5,7 +5,8 @@
         public int Id { get; set; }
         public string? Nome { get; set; }
         public long Telefone { get; set; }
-        public int Endereco { get; set; }
+        public int EnderecoId { get; set; }
+        public EnderecoDto? Endereco { get; set; }
     }
 
 }

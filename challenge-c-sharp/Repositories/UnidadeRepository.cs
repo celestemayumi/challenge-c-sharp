@@ -26,7 +26,31 @@ namespace challenge_c_sharp.Repositories
                         Id = u.Id,
                         Nome = u.Nome,
                         Telefone = u.Telefone,
-                        Endereco = u.Endereco
+                        Endereco = new EnderecoDto
+                        {
+                            Id = u.Endereco.Id,
+                            Logradouro = u.Endereco.Logradouro,
+                            Numero = u.Endereco.Numero,
+                            CEP = u.Endereco.CEP,
+                            Complemento = u.Endereco.Complemento,
+                            BairroId = u.Endereco.BairroId,
+                            Bairro = new BairroDto
+                            {
+                                Id = u.Endereco.Bairro.Id,
+                                Nome = u.Endereco.Bairro.Nome,
+                                Cidade = new CidadeDto 
+                                {
+                                    Id = u.Endereco.Bairro.Cidade.Id,
+                                    Nome = u.Endereco.Bairro.Cidade.Nome,
+                                    Estado = new EstadoDto // Mapeando EstadoDto
+                                    {
+                                        Id = u.Endereco.Bairro.Cidade.Estado.Id,
+                                        Nome = u.Endereco.Bairro.Cidade.Estado.Nome,
+                                        Sigla = u.Endereco.Bairro.Cidade.Estado.Sigla
+                                    }
+                                }
+                            }
+                        }
                     })
                     .ToListAsync();
             }
@@ -49,7 +73,31 @@ namespace challenge_c_sharp.Repositories
                     Id = unidade.Id,
                     Nome = unidade.Nome,
                     Telefone = unidade.Telefone,
-                    Endereco = unidade.Endereco
+                    Endereco = new EnderecoDto
+                    {
+                        Id = unidade.Endereco.Id,
+                        Logradouro = unidade.Endereco.Logradouro,
+                        Numero = unidade.Endereco.Numero,
+                        CEP = unidade.Endereco.CEP,
+                        Complemento = unidade.Endereco.Complemento,
+                        BairroId = unidade.Endereco.BairroId,
+                        Bairro = new BairroDto
+                        {
+                            Id = unidade.Endereco.Bairro.Id,
+                            Nome = unidade.Endereco.Bairro.Nome,
+                            Cidade = new CidadeDto
+                            {
+                                Id = unidade.Endereco.Bairro.Cidade.Id,
+                                Nome = unidade.Endereco.Bairro.Cidade.Nome,
+                                Estado = new EstadoDto // Mapeando EstadoDto
+                                {
+                                    Id = unidade.Endereco.Bairro.Cidade.Estado.Id,
+                                    Nome = unidade.Endereco.Bairro.Cidade.Estado.Nome,
+                                    Sigla = unidade.Endereco.Bairro.Cidade.Estado.Sigla
+                                }
+                            }
+                        }
+                    }
                 };
             }
             catch (Exception ex)
@@ -67,7 +115,7 @@ namespace challenge_c_sharp.Repositories
                 {
                     Nome = unidadeDto.Nome,
                     Telefone = unidadeDto.Telefone,
-                    Endereco = unidadeDto.Endereco
+                    EnderecoId = unidadeDto.EnderecoId
                 };
 
                 _context.Unidades.Add(unidade);
@@ -89,7 +137,7 @@ namespace challenge_c_sharp.Repositories
 
                 unidade.Nome = unidadeDto.Nome;
                 unidade.Telefone = unidadeDto.Telefone;
-                unidade.Endereco = unidadeDto.Endereco;
+                unidade.EnderecoId = unidadeDto.EnderecoId;
 
                 _context.Unidades.Update(unidade);
                 await _context.SaveChangesAsync();

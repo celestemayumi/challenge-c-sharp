@@ -1,24 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using challenge_c_sharp.Services;
 using challenge_c_sharp.Dtos;
+using challenge_c_sharp.Services;
+using Microsoft.Extensions.Logging;
 
 namespace challenge_c_sharp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UnidadesController : Controller
+    public class UnidadeController : Controller
     {
         private readonly UnidadeService _unidadeService;
-        private readonly ILogger<UnidadesController> _logger;
+        private readonly ILogger<UnidadeController> _logger;
 
-        public UnidadesController(UnidadeService unidadeService, ILogger<UnidadesController> logger)
+        public UnidadeController(UnidadeService unidadeService, ILogger<UnidadeController> logger)
         {
             _unidadeService = unidadeService;
             _logger = logger;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UnidadeDto>>> Get()
+        public async Task<ActionResult<IEnumerable<UnidadeDto>>> GetUnidades()
         {
             try
             {
@@ -32,14 +33,13 @@ namespace challenge_c_sharp.Controllers
             }
         }
 
-
         [HttpGet("{id}")]
-        public async Task<ActionResult<UnidadeDto>> Get(int id)
+        public async Task<ActionResult<UnidadeDto>> GetUnidade(int id)
         {
             try
             {
                 var unidade = await _unidadeService.GetUnidadeByIdAsync(id);
-                if (unidade == null) return NotFound();
+                if (unidade == null) return NotFound($"Unidade com ID {id} não encontrada.");
 
                 return Ok(unidade);
             }
@@ -50,14 +50,13 @@ namespace challenge_c_sharp.Controllers
             }
         }
 
-
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] UnidadeDto unidadeDto)
         {
             try
             {
                 await _unidadeService.AddUnidadeAsync(unidadeDto);
-                return CreatedAtAction(nameof(Get), new { id = unidadeDto.Id }, unidadeDto);
+                return CreatedAtAction(nameof(GetUnidade), new { id = unidadeDto.Id }, unidadeDto);
             }
             catch (Exception ex)
             {
@@ -69,7 +68,7 @@ namespace challenge_c_sharp.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(int id, [FromBody] UnidadeDto unidadeDto)
         {
-            if (id != unidadeDto.Id) return BadRequest();
+            if (id != unidadeDto.Id) return BadRequest("O ID na URL não corresponde ao ID do objeto.");
 
             try
             {

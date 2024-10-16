@@ -13,6 +13,9 @@ namespace challenge_c_sharp.Models
         [Column("TELEFONE")]
         public long Telefone { get; set; }
         [Column("ID_ENDERECO")]
-        public int Endereco { get; set; }
+        [ForeignKey("FK_ENDERECO_UNIDADE")]
+        public int EnderecoId { get; set; }
+
+        public virtual Endereco Endereco { get; set; }
     }
 }
