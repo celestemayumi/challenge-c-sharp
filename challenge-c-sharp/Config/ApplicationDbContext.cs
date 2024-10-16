@@ -28,6 +28,8 @@ namespace challenge_c_sharp.Config
         public DbSet<Bairro> Bairros { get; set; }
         //DbSet para cidade
         public DbSet<Cidade> Cidades { get; set; }
+        //Db Set de unidade
+        public DbSet<Unidade> Unidades { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,6 +42,7 @@ namespace challenge_c_sharp.Config
             modelBuilder.Entity<Endereco>().ToTable("OP_ENDERECO");
             modelBuilder.Entity<Cidade>().ToTable("OP_CIDADE");
             modelBuilder.Entity<Bairro>().ToTable("OP_BAIRRO");
+            modelBuilder.Entity<Unidade>().ToTable("OP_UNIDADE");
 
             // Configuração de relacionamentos
 

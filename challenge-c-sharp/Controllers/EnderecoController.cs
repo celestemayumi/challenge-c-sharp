@@ -6,7 +6,7 @@ namespace challenge_c_sharp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EnderecoController : ControllerBase
+    public class EnderecoController : Controller
     {
         private readonly EnderecoService _enderecoService;
 

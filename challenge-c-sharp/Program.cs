@@ -32,6 +32,8 @@ builder.Services.AddScoped<IGenericRepository<CidadeDto>, CidadeRepository>();
 builder.Services.AddScoped<CidadeService>();
 builder.Services.AddScoped<IGenericRepository<EstadoDto>, EstadoRepository>();
 builder.Services.AddScoped<EstadoService>();
+builder.Services.AddScoped<IGenericRepository<UnidadeDto>, UnidadeRepository>();
+builder.Services.AddScoped<UnidadeService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

@@ -6,7 +6,7 @@ namespace challenge_c_sharp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DentistaController : ControllerBase
+    public class DentistaController : Controller
     {
         private readonly DentistaService _dentistaService;
 

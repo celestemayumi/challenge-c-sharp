@@ -6,7 +6,7 @@ namespace challenge_c_sharp.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CidadeController : ControllerBase
+    public class CidadeController : Controller
     {
         private readonly CidadeService _cidadeService;
 

@@ -6,7 +6,7 @@ namespace challenge_c_sharp.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BairroController : ControllerBase
+    public class BairroController : Controller
     {
         private readonly BairroService _bairroService;
 

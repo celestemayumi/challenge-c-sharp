@@ -6,7 +6,7 @@ namespace challenge_c_sharp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ConsultasController : ControllerBase
+    public class ConsultasController : Controller
     {
         private readonly ConsultaService _consultaService;
         private readonly ILogger<ConsultasController> _logger; // Logger

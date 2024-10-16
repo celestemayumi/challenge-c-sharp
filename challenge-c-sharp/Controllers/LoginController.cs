@@ -6,7 +6,7 @@ namespace challenge_c_sharp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LoginController : ControllerBase
+    public class LoginController : Controller
     {
         private readonly LoginService _loginService; // Alterado para usar LoginService
 
